@@ -48,6 +48,8 @@ test('typing, error recovery, pause, persisted egg, hatch and companion loop', a
   expect((await saved(page)).collection).toEqual(before.collection)
   await page.getByRole('button', { name: 'Hatch your egg' }).click()
   await expect(page.getByRole('heading', { name: 'A friendship has hatched.' })).toBeVisible()
+  await expect(page.locator('.results-view .pixel-creature')).toHaveCount(1)
+  await expect(page.locator('.retreat-art')).toHaveCount(0)
   await page.getByRole('button', { name: 'Meet your collection' }).click()
   await expect(page.locator('.creature-card')).toHaveCount(35)
   await page.getByRole('button', { name: 'Choose companion' }).click()
@@ -70,6 +72,7 @@ test('retreat keeps mistakes, gives no egg, and retries with five hearts', async
   for (let mistake = 0; mistake < 4; mistake++) { await page.keyboard.type('!!'); await page.keyboard.press('Backspace'); await page.keyboard.press('Backspace') }
   await page.keyboard.type('!')
   await expect(page.getByRole('heading', { name: 'Rest, regroup, return.' })).toBeVisible()
+  await expect(page.locator('.retreat-art .pixel-creature')).toHaveCount(1)
   const save = await saved(page)
   expect(save.totals.attempts).toBe(9)
   expect(save.totals.wins).toBe(0)
