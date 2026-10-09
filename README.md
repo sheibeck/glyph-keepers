@@ -26,7 +26,7 @@ Before browser tests, run `npx playwright install chromium`. The test configurat
 
 The hosted game is published at `https://sheibeck.github.io/glyph-keepers/`. The `.github/workflows/pages.yml` workflow installs locked dependencies, runs domain tests, builds with `--mode github-pages`, and deploys the static `dist/` artifact when changes reach `master`. It can also be started manually from GitHub Actions. Pages must use GitHub Actions as its publishing source.
 
-The GitHub Pages build uses `/glyph-keepers/` as its asset base; ordinary local builds keep `/`. To preview the Pages build locally, run `npm run build -- --mode github-pages`, then `npm run preview -- --mode github-pages` and open `/glyph-keepers/` on the printed origin. Repository source remains private. GitHub Pages for private repositories requires an eligible GitHub plan; the published game itself is publicly accessible.
+The GitHub Pages build uses `/glyph-keepers/` as its asset base; ordinary local builds keep `/`. To preview the Pages build locally, run `npm run build -- --mode github-pages`, then `npm run preview -- --mode github-pages` and open `/glyph-keepers/` on the printed origin. The repository and published game are public. Player saves and statistics stay in the browser and are never committed to the repository.
 
 Progress remains local to each browser even when hosted. Export/import a save in the parent journal to transfer progress from localhost or another device. Hosting does not provide account sync or send practice statistics to a server.
 
